@@ -15,8 +15,6 @@ const createWindow = () => {
         win.loadFile(path.join(__dirname, "../index.html"));
     } else {
         const url = `http://${PROCESS_ENV.VITE_DEV_SERVER_HOST}:${PROCESS_ENV.VITE_DEV_SERVER_PORT}`;
-        console.log(url);
-
         win.loadURL(url);
     }
 };
