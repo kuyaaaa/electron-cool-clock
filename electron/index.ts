@@ -5,9 +5,8 @@ import { env as PROCESS_ENV } from "process";
 const createWindow = () => {
     const win = new BrowserWindow({
         webPreferences: {
-            contextIsolation: false,
-            nodeIntegration: true,
-            preload: path.join(__dirname, "../electron-preload/index.ts"),
+            devTools: !app.isPackaged,
+            preload: path.join(__dirname, "./preload.js"),
         },
     });
 
