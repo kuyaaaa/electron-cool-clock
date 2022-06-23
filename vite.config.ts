@@ -23,4 +23,9 @@ export default defineConfig({
     build: {
         emptyOutDir: false, // 必须配置，否则electron相关文件将不会生成build后的文件
     },
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "src"),
+        },
+    },
 });
