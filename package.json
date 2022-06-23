@@ -15,6 +15,7 @@
         "@typescript-eslint/eslint-plugin": "^5.29.0",
         "@typescript-eslint/parser": "^5.29.0",
         "@vitejs/plugin-vue": "^2.3.3",
+        "chalk": "^5.0.1",
         "electron": "^19.0.5",
         "electron-builder": "^23.1.0",
         "electron-devtools-installer": "^3.2.0",

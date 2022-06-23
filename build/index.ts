@@ -1,4 +1,6 @@
+/* eslint no-template-curly-in-string: "off" */
 import * as builder from "electron-builder";
+import chalk from "chalk";
 
 const { Platform } = builder;
 
@@ -11,7 +13,7 @@ builder
         targets: Platform.WINDOWS.createTarget(),
         config: {
             appId: "com.electron.desktop",
-            productName: "ElectronVueVite",
+            productName: "cool-clock",
             asar: true,
             copyright: "Copyright © 2022 ZhuShiJun",
             directories: {
@@ -25,6 +27,7 @@ builder
                         arch: ["x64"],
                     },
                 ],
+                artifactName: "${productName}_${version}.${ext}",
             },
             nsis: {
                 oneClick: false,
@@ -36,10 +39,13 @@ builder
     })
     .then(result => {
         // handle result
-        console.log(result);
+        console.log(chalk.bgGreen(" BUILD SUCCESS "), "build files:");
+        result.forEach(path => {
+            console.log(chalk.underline(path));
+        });
     })
     .catch(error => {
         // handle error
-        console.error("------------------------------BUILD ERROR------------------------------");
-        console.error(error);
+        console.error(chalk.bgRed(" BUILD ERROR "));
+        console.error(chalk.red(error));
     });
