@@ -1,6 +1,5 @@
-import os from "os";
-import { contextBridge } from "electron";
+// import { contextBridge } from "electron";
 
-contextBridge.exposeInMainWorld("electronAPI", {
-    platform: os.platform(),
-});
+// contextBridge.exposeInMainWorld("$electron", {});
+
+export {};

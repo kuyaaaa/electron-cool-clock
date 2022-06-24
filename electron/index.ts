@@ -2,9 +2,22 @@ import { app, BrowserWindow } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
 
+const remote = require("@electron/remote/main");
+
+remote.initialize();
+
 const createWindow = () => {
     const win = new BrowserWindow({
+        width: 280,
+        height: 48,
+        type: "toolbar",
+        frame: false,
+        resizable: false,
+        transparent: true,
+        alwaysOnTop: true,
         webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
             devTools: !app.isPackaged,
             preload: path.join(__dirname, "./preload.js"),
         },
@@ -16,7 +29,12 @@ const createWindow = () => {
         const url = `http://${PROCESS_ENV.VITE_DEV_SERVER_HOST}:${PROCESS_ENV.VITE_DEV_SERVER_PORT}`;
         win.loadURL(url);
     }
+
+    remote.enable(win.webContents);
 };
+
+// this solve "Passthrough is not supported"
+app.disableHardwareAcceleration();
 
 app.whenReady().then(() => {
     createWindow();
