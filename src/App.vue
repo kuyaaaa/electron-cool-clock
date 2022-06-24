@@ -3,35 +3,25 @@
 </template>
 
 <script setup lang="ts">
-import { throttle } from "lodash";
+import { ipcWindowMove } from "@/utils/ipcRenderer";
 
 window.addEventListener("DOMContentLoaded", () => {
     const el = document.querySelector("body") as HTMLElement;
-    let dragging = false;
-    let mouseX = 0;
-    let mouseY = 0;
+
     el.addEventListener("mousedown", e => {
-        dragging = true;
-        const { pageX, pageY } = e;
-        mouseX = pageX;
-        mouseY = pageY;
+        if (
+            e.target instanceof HTMLInputElement ||
+            e.target instanceof HTMLButtonElement ||
+            e.target instanceof HTMLTextAreaElement
+        ) {
+            ipcWindowMove(false);
+            return;
+        }
+        ipcWindowMove(true);
     });
     window.addEventListener("mouseup", () => {
-        dragging = false;
+        ipcWindowMove(false);
     });
-    window.addEventListener(
-        "mousemove",
-        throttle((e: MouseEvent) => {
-            if (dragging) {
-                const { pageX, pageY } = e;
-                const win = require("@electron/remote").getCurrentWindow();
-                const pos = win.getPosition();
-                pos[0] = pos[0] + pageX - mouseX;
-                pos[1] = pos[1] + pageY - mouseY;
-                win.setPosition(pos[0], pos[1], true);
-            }
-        }, 50)
-    );
 });
 </script>
 

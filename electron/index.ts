@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
+import windowMove from "./utils/drag";
 
 const remote = require("@electron/remote/main");
 
@@ -31,6 +32,8 @@ const createWindow = () => {
     }
 
     remote.enable(win.webContents);
+    // 窗口移动挂载
+    windowMove(win);
 };
 
 // this solve "Passthrough is not supported"
