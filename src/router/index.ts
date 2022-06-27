@@ -6,6 +6,11 @@ export const routes: RouteRecordRaw[] = [
         name: "clock",
         component: () => import("@/views/clock/index.vue"),
     },
+    {
+        path: "/setting",
+        name: "setting",
+        component: () => import("@/views/setting/index.vue"),
+    },
 ];
 
 const router = createRouter({
