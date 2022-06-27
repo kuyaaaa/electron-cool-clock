@@ -41,6 +41,11 @@ const createWindow = () => {
 // this solve "Passthrough is not supported"
 app.disableHardwareAcceleration();
 
+// 开机自启配置
+app.setLoginItemSettings({
+    openAtLogin: true,
+});
+
 app.whenReady().then(() => {
     createWindow();
 
