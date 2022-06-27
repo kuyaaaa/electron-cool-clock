@@ -22,7 +22,7 @@ builder
             },
             files: ["dist"],
             win: {
-                icon: "/src/assets/images/icons/icon-fav-512.png",
+                icon: "/public/favicon-256.ico",
                 target: [
                     {
                         target: "nsis",

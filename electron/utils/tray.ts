@@ -19,8 +19,8 @@ const menu = Menu.buildFromTemplate([
 
 app.whenReady().then(() => {
     const iconPath = !app.isPackaged
-        ? path.join(__dirname, "../../public/favicon.ico")
-        : path.join(__dirname, "../favicon.ico");
+        ? path.join(__dirname, "../../public/favicon-32.ico")
+        : path.join(__dirname, "../favicon-32.ico");
 
     const appTray = new Tray(iconPath);
 
