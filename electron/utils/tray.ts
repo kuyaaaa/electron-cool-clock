@@ -1,5 +1,3 @@
-import { env as PROCESS_ENV } from "process";
-
 // 系统托盘图标菜单配置
 const { Menu, Tray, app } = require("electron");
 const path = require("path");
@@ -18,10 +16,9 @@ const menu = Menu.buildFromTemplate([
 ]);
 
 app.whenReady().then(() => {
-    const iconPath =
-        PROCESS_ENV.NODE_ENV === "development"
-            ? path.join(__dirname, "../../public/favicon.ico")
-            : path.join(__dirname, "../favicon.ico");
+    const iconPath = !app.isPackaged
+        ? path.join(__dirname, "../../public/favicon.ico")
+        : path.join(__dirname, "../favicon.ico");
 
     const appTray = new Tray(iconPath);
 
