@@ -2,6 +2,8 @@ import { app, BrowserWindow } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
 import windowMove from "./utils/drag";
+// 系统托盘图标菜单配置
+import "./utils/tray";
 
 const remote = require("@electron/remote/main");
 

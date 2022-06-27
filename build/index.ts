@@ -1,6 +1,7 @@
 /* eslint no-template-curly-in-string: "off" */
 import * as builder from "electron-builder";
 import chalk from "chalk";
+import { env as PROCESS_ENV } from "process";
 
 const { Platform } = builder;
 
@@ -13,7 +14,7 @@ builder
         targets: Platform.WINDOWS.createTarget(),
         config: {
             appId: "com.electron.desktop",
-            productName: "cool-clock",
+            productName: PROCESS_ENV.npm_package_name,
             asar: true,
             copyright: "Copyright © 2022 ZhuShiJun",
             directories: {
@@ -21,6 +22,7 @@ builder
             },
             files: ["dist"],
             win: {
+                icon: "/src/assets/images/icons/icon-fav-512.png",
                 target: [
                     {
                         target: "nsis",
