@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
 
@@ -28,6 +28,10 @@ const createWindow = () => {
         const url = `http://${PROCESS_ENV.VITE_DEV_SERVER_HOST}:${PROCESS_ENV.VITE_DEV_SERVER_PORT}/#/${FRONT_PATH}`;
         win.loadURL(url);
     }
+
+    ipcMain.on("close-current-window", () => {
+        win.hide();
+    });
 };
 
 export default createWindow;
