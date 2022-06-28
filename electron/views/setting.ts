@@ -7,8 +7,11 @@ const FRONT_PATH = "setting";
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 500,
-        height: 300,
+        width: 1000,
+        height: 700,
+        resizable: false,
+        frame: false,
+        transparent: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
