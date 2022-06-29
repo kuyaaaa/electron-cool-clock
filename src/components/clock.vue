@@ -1,5 +1,8 @@
 <template>
-    <div id="clock-container" :style="{ cursor: props.moveDisabled ? 'default' : 'move' }">
+    <div
+        id="clock-container"
+        :style="{ cursor: props.moveDisabled ? 'default' : 'move', ...props.customStyle }"
+    >
         <span>
             {{ time }}
         </span>
@@ -10,10 +13,13 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import dayjs from "dayjs";
 import { ipcWindowMove } from "@/utils/ipcRenderer";
+import { StyleConfig } from "@/types/clock";
 
 const props = defineProps<{
     /** 禁用窗口移动 */
     moveDisabled?: boolean;
+    /** 自定义样式 */
+    customStyle?: StyleConfig;
 }>();
 
 const time = ref("");

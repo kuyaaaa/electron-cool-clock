@@ -16,7 +16,7 @@
                 <n-gi span="2">
                     <n-divider title-placement="left">示例</n-divider>
                     <div class="ex-container">
-                        <clock move-disabled />
+                        <clock :custom-style="settingFrom" move-disabled />
                     </div>
                 </n-gi>
                 <n-gi>
@@ -27,7 +27,7 @@
                         :model="settingFrom"
                     >
                         <n-form-item label="颜色">
-                            <n-color-picker v-model="settingFrom.color" :modes="['hex']" />
+                            <n-color-picker v-model:value="settingFrom.color" :modes="['hex']" />
                         </n-form-item>
                         <n-form-item>
                             <n-button type="success">保存</n-button>
@@ -57,8 +57,10 @@ import { Settings as SettingsIcon, X as XIcon } from "@vicons/tabler";
 import { ref } from "vue";
 import { ipcCloseCurrentWindow } from "@/utils/ipcRenderer";
 import Clock from "@/components/clock.vue";
+import { StyleConfig } from "@/types/clock";
+import { defaultStyleConfig } from "@/config/default";
 
-const settingFrom = ref({ color: "" });
+const settingFrom = ref<StyleConfig>(defaultStyleConfig);
 
 const handleClose = () => {
     ipcCloseCurrentWindow();
