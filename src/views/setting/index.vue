@@ -15,7 +15,9 @@
             <n-grid x-gap="30" :cols="3">
                 <n-gi span="2">
                     <n-divider title-placement="left">示例</n-divider>
-                    <div class="ex-container"></div>
+                    <div class="ex-container">
+                        <clock move-disabled />
+                    </div>
                 </n-gi>
                 <n-gi>
                     <n-form
@@ -54,6 +56,7 @@ import {
 import { Settings as SettingsIcon, X as XIcon } from "@vicons/tabler";
 import { ref } from "vue";
 import { ipcCloseCurrentWindow } from "@/utils/ipcRenderer";
+import Clock from "@/components/clock.vue";
 
 const settingFrom = ref({ color: "" });
 
@@ -107,5 +110,8 @@ $move-bar-height: 40px;
     background-image: url("/src/assets/images/front/windows-bg.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>
