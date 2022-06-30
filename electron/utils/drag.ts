@@ -1,4 +1,4 @@
-const { screen: electronScreen, ipcMain } = require("electron");
+import { screen as electronScreen, ipcMain } from "electron";
 
 /**
  * 窗口移动事件

@@ -1,5 +1,5 @@
 /** ipcRenderer交互方法 */
-const { ipcRenderer } = require("electron");
+import { ipcRenderer } from "electron";
 
 /**
  * 窗口移动ipcRenderer发送消息

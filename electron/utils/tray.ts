@@ -1,8 +1,8 @@
 // 系统托盘图标菜单配置
-import SettingWindow from "../views/setting";
 
-const { Menu, Tray, app, BrowserWindow } = require("electron");
-const path = require("path");
+import { Menu, Tray, app } from "electron";
+import path from "path";
+import SettingWindow from "../views/setting";
 
 const menu = Menu.buildFromTemplate([
     {

@@ -1,12 +1,10 @@
 import { app, BrowserWindow } from "electron";
+import remote from "@electron/remote/main";
 import MainWindow from "./views/main";
-
 // 全局变量挂载
 import "./utils/global";
 // 系统托盘图标菜单配置
 import "./utils/tray";
-
-const remote = require("@electron/remote/main");
 
 remote.initialize();
 

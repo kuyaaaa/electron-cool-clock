@@ -1,9 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
+import remote from "@electron/remote/main";
 import windowMove from "../utils/drag";
-
-const remote = require("@electron/remote/main");
 
 const createWindow = () => {
     const win = new BrowserWindow({
