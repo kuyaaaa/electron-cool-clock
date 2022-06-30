@@ -4,6 +4,8 @@ import * as path from "path";
 import electron from "vite-plugin-electron";
 import electronRenderer from "vite-plugin-electron/renderer";
 import polyfillExports from "vite-plugin-electron/polyfill-exports";
+import Components from "unplugin-vue-components/vite";
+import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 
 export default defineConfig({
     plugins: [
@@ -19,6 +21,9 @@ export default defineConfig({
         }),
         electronRenderer(),
         polyfillExports(),
+        Components({
+            resolvers: [NaiveUiResolver()],
+        }),
     ],
     build: {
         emptyOutDir: false, // 必须配置，否则electron相关文件将不会生成build后的文件

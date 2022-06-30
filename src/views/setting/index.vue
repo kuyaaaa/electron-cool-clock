@@ -40,19 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-import {
-    NLayout,
-    NLayoutHeader,
-    NLayoutContent,
-    NGrid,
-    NGi,
-    NDivider,
-    NIcon,
-    NForm,
-    NFormItem,
-    NColorPicker,
-    NButton,
-} from "naive-ui";
 import { Settings as SettingsIcon, X as XIcon } from "@vicons/tabler";
 import { ref } from "vue";
 import { ipcCloseCurrentWindow } from "@/utils/ipcRenderer";

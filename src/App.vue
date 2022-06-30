@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { zhCN, dateZhCN, NConfigProvider } from "naive-ui";
+import { zhCN, dateZhCN } from "naive-ui";
 </script>
 
 <style lang="scss">
