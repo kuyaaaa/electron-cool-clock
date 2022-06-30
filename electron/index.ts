@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from "electron";
-import MainWindow from "./views/mian";
+import MainWindow from "./views/main";
 
 // 全局变量挂载
 import "./utils/global";
