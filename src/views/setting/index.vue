@@ -29,6 +29,15 @@
                         <n-form-item label="颜色">
                             <n-color-picker v-model:value="settingFrom.color" :modes="['hex']" />
                         </n-form-item>
+                        <n-form-item label="颜色">
+                            <input-number-suffix
+                                v-model:value="settingFrom.fontSize"
+                                style="width: 100%"
+                                suffix="px"
+                                :min="14"
+                                :max="100"
+                            />
+                        </n-form-item>
                         <n-form-item>
                             <n-button type="success">保存</n-button>
                         </n-form-item>
