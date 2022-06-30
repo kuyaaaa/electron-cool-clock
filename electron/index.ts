@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import MainWindow from "./views/mian";
 
+// 全局变量挂载
+import "./utils/global";
 // 系统托盘图标菜单配置
 import "./utils/tray";
 

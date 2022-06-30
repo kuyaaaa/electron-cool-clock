@@ -1,13 +1,19 @@
 // 系统托盘图标菜单配置
 import SettingWindow from "../views/setting";
 
-const { Menu, Tray, app } = require("electron");
+const { Menu, Tray, app, BrowserWindow } = require("electron");
 const path = require("path");
 
 const menu = Menu.buildFromTemplate([
     {
         label: "设置",
-        click: () => SettingWindow(),
+        click: () => {
+            if (global.WINDOWS.settingWindow) {
+                global.WINDOWS.settingWindow.show();
+            } else {
+                SettingWindow();
+            }
+        },
     },
     {
         label: "退出",

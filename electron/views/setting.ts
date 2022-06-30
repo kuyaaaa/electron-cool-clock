@@ -7,6 +7,7 @@ const FRONT_PATH = "setting";
 
 const createWindow = () => {
     const win = new BrowserWindow({
+        title: "setting",
         width: 1000,
         height: 700,
         resizable: false,
@@ -29,9 +30,15 @@ const createWindow = () => {
         win.loadURL(url);
     }
 
-    ipcMain.on("close-current-window", () => {
-        win.hide();
+    win.once("close", () => {
+        global.WINDOWS.settingWindow = null;
     });
+
+    ipcMain.once("close-current-window", () => {
+        win.close();
+    });
+
+    global.WINDOWS.settingWindow = win;
 };
 
 export default createWindow;
