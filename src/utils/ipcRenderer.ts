@@ -22,3 +22,8 @@ export const ipcReloadWindow = () => ipcRenderer.send("reload-window");
  */
 export const ipcGetPageSize = (size: { width: number; height: number }) =>
     ipcRenderer.send("get-page-size", size);
+
+/**
+ * 移动停止，用于获取停止位置
+ */
+export const ipcWindowMoveFinish = () => ipcRenderer.send("window-move-finish");

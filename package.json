@@ -12,6 +12,7 @@
         "@electron/remote": "^2.0.8",
         "@vicons/tabler": "^0.12.0",
         "dayjs": "^1.11.3",
+        "electron-store": "^8.0.2",
         "lodash": "^4.17.21",
         "naive-ui": "^2.30.6",
         "pinia": "^2.0.14",
