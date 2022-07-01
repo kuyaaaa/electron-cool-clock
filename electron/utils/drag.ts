@@ -1,10 +1,10 @@
-import { screen as electronScreen, ipcMain } from "electron";
+import { screen as electronScreen, ipcMain, BrowserWindow } from "electron";
 
 /**
  * 窗口移动事件
  * author: https://zhuanlan.zhihu.com/p/112564936
  */
-export default (win: any) => {
+export default (win: BrowserWindow) => {
     let winStartPosition = { x: 0, y: 0 };
     let mouseStartPosition = { x: 0, y: 0 };
     let movingInterval: any = null;
