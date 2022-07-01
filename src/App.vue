@@ -19,6 +19,7 @@ systemStore.getStyleConfig();
 
 <style lang="scss">
 body {
+    width: auto;
     overflow: hidden;
     margin: 0;
     padding: 0;

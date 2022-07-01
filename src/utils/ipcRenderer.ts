@@ -16,3 +16,9 @@ export const ipcCloseCurrentWindow = () => ipcRenderer.send("close-current-windo
  * 刷新窗口页面
  */
 export const ipcReloadWindow = () => ipcRenderer.send("reload-window");
+
+/**
+ * 获取页面的宽高
+ */
+export const ipcGetPageSize = (size: { width: number; height: number }) =>
+    ipcRenderer.send("get-page-size", size);

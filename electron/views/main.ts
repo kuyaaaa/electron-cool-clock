@@ -6,8 +6,8 @@ import windowMove from "../utils/drag";
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 280,
-        height: 48,
+        width: 400,
+        height: 100,
         type: "toolbar",
         frame: false,
         resizable: false,
@@ -34,6 +34,10 @@ const createWindow = () => {
 
     ipcMain.on("reload-window", () => {
         win.reload();
+    });
+
+    ipcMain.on("get-page-size", (event, size) => {
+        win.setContentSize(size.width + 4, size.height + 4, true);
     });
 };
 

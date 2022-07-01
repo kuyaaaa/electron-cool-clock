@@ -29,7 +29,7 @@
                         <n-form-item label="颜色">
                             <n-color-picker v-model:value="settingFrom.color" :modes="['hex']" />
                         </n-form-item>
-                        <n-form-item label="颜色">
+                        <n-form-item label="字体大小">
                             <input-number-suffix
                                 v-model:value="settingFrom.fontSize"
                                 style="width: 100%"
