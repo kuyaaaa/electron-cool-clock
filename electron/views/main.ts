@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
 import remote from "@electron/remote/main";
@@ -31,6 +31,10 @@ const createWindow = () => {
     remote.enable(win.webContents);
     // 窗口移动挂载
     windowMove(win);
+
+    ipcMain.on("reload-window", () => {
+        win.reload();
+    });
 };
 
 export default createWindow;

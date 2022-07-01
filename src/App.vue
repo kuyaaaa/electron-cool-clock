@@ -6,6 +6,11 @@
 
 <script setup lang="ts">
 import { zhCN, dateZhCN } from "naive-ui";
+import useSystemStore from "@/store/modules/system";
+
+const systemStore = useSystemStore();
+
+systemStore.getStyleConfig();
 </script>
 
 <style lang="scss">

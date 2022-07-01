@@ -39,7 +39,14 @@
                             />
                         </n-form-item>
                         <n-form-item>
-                            <n-button type="success">保存</n-button>
+                            <n-button type="success" block @click="handleSave">
+                                <template #icon>
+                                    <n-icon>
+                                        <checkbox-icon />
+                                    </n-icon>
+                                </template>
+                                保存
+                            </n-button>
                         </n-form-item>
                     </n-form>
                 </n-gi>
@@ -49,17 +56,27 @@
 </template>
 
 <script lang="ts" setup>
-import { Settings as SettingsIcon, X as XIcon } from "@vicons/tabler";
+import { Settings as SettingsIcon, X as XIcon, Checkbox as CheckboxIcon } from "@vicons/tabler";
 import { ref } from "vue";
-import { ipcCloseCurrentWindow } from "@/utils/ipcRenderer";
+import { cloneDeep } from "lodash";
+import { ipcCloseCurrentWindow, ipcReloadWindow } from "@/utils/ipcRenderer";
 import Clock from "@/components/clock.vue";
 import { StyleConfig } from "@/types/clock";
-import { defaultStyleConfig } from "@/config/default";
+import useSystemStore from "@/store/modules/system";
 
-const settingFrom = ref<StyleConfig>(defaultStyleConfig);
+const systemStore = useSystemStore();
+
+const { styleConfig: formerStyle } = systemStore;
+const settingFrom = ref<StyleConfig>(cloneDeep(formerStyle));
 
 const handleClose = () => {
     ipcCloseCurrentWindow();
+};
+
+const handleSave = () => {
+    systemStore.setStyleConfig(settingFrom.value);
+    ipcCloseCurrentWindow();
+    ipcReloadWindow();
 };
 </script>
 
