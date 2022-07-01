@@ -5,7 +5,7 @@
     "main": "dist/electron/index.js",
     "scripts": {
         "dev": "vite",
-        "build": "rimraf dist && vite build && esno build/index.ts",
+        "build": "rimraf dist release && vite build && esno build/index.ts",
         "preview": "vite preview"
     },
     "dependencies": {
