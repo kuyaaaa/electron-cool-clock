@@ -58,11 +58,14 @@
 <script lang="ts" setup>
 import { Settings as SettingsIcon, X as XIcon, Checkbox as CheckboxIcon } from "@vicons/tabler";
 import { ref } from "vue";
-import { cloneDeep } from "lodash";
+import { cloneDeep, isEqual } from "lodash";
+import { useDialog } from "naive-ui";
 import { ipcCloseCurrentWindow, ipcReloadWindow } from "@/utils/ipcRenderer";
 import Clock from "@/components/clock.vue";
 import { StyleConfig } from "@/types/clock";
 import useSystemStore from "@/store/modules/system";
+
+const dialog = useDialog();
 
 const systemStore = useSystemStore();
 
@@ -70,7 +73,21 @@ const { styleConfig: formerStyle } = systemStore;
 const settingFrom = ref<StyleConfig>(cloneDeep(formerStyle));
 
 const handleClose = () => {
-    ipcCloseCurrentWindow();
+    const hasChanged = isEqual(formerStyle, settingFrom.value);
+    if (hasChanged) {
+        ipcCloseCurrentWindow();
+    } else {
+        dialog.warning({
+            title: "警告",
+            content: "有已修改但未保存的设置，确定要放弃保存吗？",
+            positiveText: "确定",
+            negativeText: "返回",
+            maskClosable: false,
+            onPositiveClick: () => {
+                ipcCloseCurrentWindow();
+            },
+        });
+    }
 };
 
 const handleSave = () => {
