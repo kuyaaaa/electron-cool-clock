@@ -8,7 +8,7 @@ const useSystemStore = defineStore({
     state: () => {
         return {
             /** css样式设置 */
-            styleConfig: defaultStyleConfig,
+            styleConfig: {} as StyleConfig,
         };
     },
     actions: {
@@ -20,7 +20,8 @@ const useSystemStore = defineStore({
         },
         /** css样式设置获取 */
         getStyleConfig() {
-            const config = window.localStorage.getItem(STYLE_CONFIG) || "{}";
+            const config =
+                window.localStorage.getItem(STYLE_CONFIG) || JSON.stringify(defaultStyleConfig);
             this.styleConfig = JSON.parse(config);
         },
     },
