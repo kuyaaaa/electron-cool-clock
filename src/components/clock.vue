@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import dayjs from "dayjs";
-import { ipcGetPageSize, ipcWindowMove } from "@/utils/ipcRenderer";
+import { ipcWindowMove } from "@/utils/ipcRenderer";
 import { StyleConfig } from "@/types/clock";
 
 const props = defineProps<{
@@ -61,20 +61,10 @@ const removeMoveListener = () => {
     clockRef.value?.removeEventListener("mouseup", handleClockMoveEnd);
 };
 
-/** 获取容器的宽高 */
-const getPageSize = () => {
-    return {
-        width: clockRef.value?.offsetWidth || 0,
-        height: clockRef.value?.offsetHeight || 0,
-    };
-};
-
 onMounted(() => {
     // 更新时间并绑定定时器
     updateTime();
     updateTimer.value = setInterval(updateTime, 100);
-    // 修改窗口实际大小
-    nextTick(() => ipcGetPageSize(getPageSize()));
     // 绑定移动
     if (!props.moveDisabled) {
         bindMoveListener();
