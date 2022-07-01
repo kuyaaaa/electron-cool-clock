@@ -1,9 +1,5 @@
 <template>
-    <div
-        ref="clockRef"
-        class="clock-container"
-        :style="{ cursor: props.moveDisabled ? 'default' : 'move', ...props.customStyle }"
-    >
+    <div ref="clockRef" class="clock-container" :style="{ ...props.customStyle }">
         <div>
             {{ time }}
         </div>
@@ -13,12 +9,9 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import dayjs from "dayjs";
-import { ipcWindowMove } from "@/utils/ipcRenderer";
 import { StyleConfig } from "@/types/clock";
 
 const props = defineProps<{
-    /** 禁用窗口移动 */
-    moveDisabled?: boolean;
     /** 自定义样式 */
     customStyle?: StyleConfig;
 }>();
@@ -33,49 +26,13 @@ const updateTime = () => {
     time.value = dayjs(now).format("HH : mm : ss");
 };
 
-/** 时钟窗口移动开始事件 */
-const handleClockMoveStart = (e: MouseEvent) => {
-    if (
-        e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLButtonElement ||
-        e.target instanceof HTMLTextAreaElement
-    ) {
-        ipcWindowMove(false);
-        return;
-    }
-    ipcWindowMove(true);
-};
-/** 时钟窗口移动结束事件 */
-const handleClockMoveEnd = (e: MouseEvent) => {
-    ipcWindowMove(false);
-};
-
-/** 移动窗口事件绑定 */
-const bindMoveListener = () => {
-    clockRef.value?.addEventListener("mousedown", handleClockMoveStart);
-    clockRef.value?.addEventListener("mouseup", handleClockMoveEnd);
-};
-/** 移动窗口事件卸载 */
-const removeMoveListener = () => {
-    clockRef.value?.removeEventListener("mousedown", handleClockMoveStart);
-    clockRef.value?.removeEventListener("mouseup", handleClockMoveEnd);
-};
-
 onMounted(() => {
-    // 更新时间并绑定定时器
     updateTime();
     updateTimer.value = setInterval(updateTime, 100);
-    // 绑定移动
-    if (!props.moveDisabled) {
-        bindMoveListener();
-    }
 });
 
 onBeforeUnmount(() => {
     clearInterval(updateTimer.value);
-    if (!props.moveDisabled) {
-        removeMoveListener();
-    }
 });
 </script>
 
@@ -86,5 +43,6 @@ onBeforeUnmount(() => {
     display: inline-block;
     line-height: 1;
     white-space: nowrap;
+    cursor: move;
 }
 </style>

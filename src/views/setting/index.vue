@@ -16,7 +16,7 @@
                 <n-gi span="2">
                     <n-divider title-placement="left">示例</n-divider>
                     <div class="ex-container">
-                        <clock :custom-style="settingFrom" move-disabled />
+                        <clock :custom-style="settingFrom" />
                     </div>
                 </n-gi>
                 <n-gi>
