@@ -3,8 +3,6 @@ import * as builder from "electron-builder";
 import chalk from "chalk";
 import { env as PROCESS_ENV } from "process";
 
-const { Platform } = builder;
-
 // Promise is returned
 // example: https://www.electron.build/api/programmatic-usage
 builder
