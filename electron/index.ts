@@ -3,8 +3,8 @@ import remote from "@electron/remote/main";
 import MainWindow from "./views/main";
 // 全局变量挂载
 import "./utils/global";
-// 系统托盘图标菜单配置
-import "./utils/tray";
+// 系统托盘
+import createTray from "./utils/tray";
 
 remote.initialize();
 
@@ -15,6 +15,18 @@ app.disableHardwareAcceleration();
 app.setLoginItemSettings({
     openAtLogin: true,
 });
+
+// 多开检测
+const gotTheLock = app.requestSingleInstanceLock();
+if (!gotTheLock) {
+    app.quit();
+} else {
+    createTray();
+    app.on("second-instance", () => {
+        const { mainWindow } = global.WINDOWS;
+        mainWindow?.focus();
+    });
+}
 
 app.whenReady().then(() => {
     MainWindow();

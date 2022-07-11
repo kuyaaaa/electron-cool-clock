@@ -4,37 +4,39 @@ import { Menu, Tray, app } from "electron";
 import path from "path";
 import SettingWindow from "../views/setting";
 
-const menu = Menu.buildFromTemplate([
-    {
-        label: "设置",
-        click: () => {
-            if (global.WINDOWS.settingWindow) {
-                global.WINDOWS.settingWindow.show();
-            } else {
-                SettingWindow();
-            }
+export default () => {
+    const menu = Menu.buildFromTemplate([
+        {
+            label: "设置",
+            click: () => {
+                if (global.WINDOWS.settingWindow) {
+                    global.WINDOWS.settingWindow.show();
+                } else {
+                    SettingWindow();
+                }
+            },
         },
-    },
-    {
-        label: "退出",
-        click() {
-            app.quit();
+        {
+            label: "退出",
+            click() {
+                app.quit();
+            },
         },
-    },
-]);
+    ]);
 
-app.whenReady().then(() => {
-    const iconPath = !app.isPackaged
-        ? path.join(__dirname, "../../public/favicon-32.ico")
-        : path.join(__dirname, "../favicon-32.ico");
+    app.whenReady().then(() => {
+        const iconPath = !app.isPackaged
+            ? path.join(__dirname, "../../public/favicon-32.ico")
+            : path.join(__dirname, "../favicon-32.ico");
 
-    const appTray = new Tray(iconPath);
+        const appTray = new Tray(iconPath);
 
-    appTray.setToolTip("cool-clock");
-    appTray.setContextMenu(menu);
+        appTray.setToolTip("cool-clock");
+        appTray.setContextMenu(menu);
 
-    // 双击事件
-    appTray.on("double-click", () => {
-        console.log("double-click");
+        // 双击事件
+        appTray.on("double-click", () => {
+            console.log("double-click");
+        });
     });
-});
+};
