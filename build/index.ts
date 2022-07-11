@@ -9,9 +9,6 @@ const { Platform } = builder;
 // example: https://www.electron.build/api/programmatic-usage
 builder
     .build({
-        // ⭐ here to change build win or mac.
-        // there only build for win.
-        targets: Platform.WINDOWS.createTarget(),
         config: {
             appId: "com.electron.desktop",
             productName: PROCESS_ENV.npm_package_name,
