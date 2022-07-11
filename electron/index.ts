@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import remote from "@electron/remote/main";
-import MainWindow from "./views/main";
+import createMainWindow from "./views/main";
 // 全局变量挂载
 import "./utils/global";
 // 系统托盘
@@ -29,13 +29,13 @@ if (!gotTheLock) {
 }
 
 app.whenReady().then(() => {
-    MainWindow();
+    createMainWindow();
 
     app.on("activate", () => {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
         if (BrowserWindow.getAllWindows().length === 0) {
-            MainWindow();
+            createMainWindow();
         }
     });
 });

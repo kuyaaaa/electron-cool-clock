@@ -2,7 +2,7 @@
 
 import { Menu, Tray, app } from "electron";
 import path from "path";
-import SettingWindow from "../views/setting";
+import createSettingWindow from "../views/setting";
 
 export default () => {
     const menu = Menu.buildFromTemplate([
@@ -12,7 +12,7 @@ export default () => {
                 if (global.WINDOWS.settingWindow) {
                     global.WINDOWS.settingWindow.show();
                 } else {
-                    SettingWindow();
+                    createSettingWindow();
                 }
             },
         },
