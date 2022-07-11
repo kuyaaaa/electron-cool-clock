@@ -51,6 +51,12 @@ const createWindow = () => {
         const [x, y] = win.getPosition();
         store.set("window-position", { x, y });
     });
+
+    win.once("close", () => {
+        global.WINDOWS.mainWindow = null;
+    });
+
+    global.WINDOWS.mainWindow = win;
 };
 
 export default createWindow;
