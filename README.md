@@ -5,8 +5,6 @@
 <p align="center">vue3 + ts + electron</p>
 <p align="center">windows下的桌面时钟应用</p>
 
----
-
 <p align="center">
   <img src="./docs/static/images/example-v1.0.1.png" />
 </p>
