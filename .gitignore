@@ -26,3 +26,6 @@ components.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# docs
+!docs/release
