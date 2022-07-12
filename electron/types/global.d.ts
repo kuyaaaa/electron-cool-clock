@@ -5,6 +5,8 @@ import type { BrowserWindow } from "electron";
 declare global {
     /** 窗口相关全局变量 */
     var WINDOWS: {
+        /** 主窗口实例 */
+        mainWindow: BrowserWindow | null;
         /** 设置窗口实例 */
         settingWindow: BrowserWindow | null;
     };
