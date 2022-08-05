@@ -56,11 +56,6 @@ const createWindow = () => {
         global.WINDOWS.mainWindow = null;
     });
 
-    // fix:win11下莫名置顶窗口消失问题
-    win.once("close", () => {
-        win.show();
-    });
-
     global.WINDOWS.mainWindow = win;
 };
 
