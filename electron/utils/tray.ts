@@ -36,7 +36,7 @@ export default () => {
 
         // 双击事件
         appTray.on("double-click", () => {
-            console.log("double-click");
+            global.WINDOWS.mainWindow?.focus();
         });
     });
 };
