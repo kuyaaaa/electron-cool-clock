@@ -35,7 +35,7 @@ const createWindow = () => {
     });
 
     ipcMain.once("close-current-window", () => {
-        global.WINDOWS.settingWindow.close();
+        global.WINDOWS.settingWindow?.close();
     });
 
     global.WINDOWS.settingWindow = win;
