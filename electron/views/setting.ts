@@ -30,12 +30,12 @@ const createWindow = () => {
         win.loadURL(url);
     }
 
-    win.once("close", () => {
+    win.once("closed", () => {
         global.WINDOWS.settingWindow = null;
     });
 
     ipcMain.once("close-current-window", () => {
-        win.close();
+        global.WINDOWS.settingWindow.close();
     });
 
     global.WINDOWS.settingWindow = win;
