@@ -2,6 +2,7 @@
     <clock
         ref="clockRef"
         :custom-style="clockStyle"
+        :clock-config="clockConfig"
         @mousedown="handleClockMoveStart"
         @mouseup="handleClockMoveEnd"
     />
@@ -15,7 +16,7 @@ import { ipcGetPageSize, ipcWindowMove } from "@/utils/ipcRenderer";
 
 const systemStore = useSystemStore();
 
-const { styleConfig: clockStyle } = storeToRefs(systemStore);
+const { styleConfig: clockStyle, clockConfig } = storeToRefs(systemStore);
 
 const clockRef = ref<any>(null);
 

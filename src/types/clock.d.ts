@@ -12,4 +12,6 @@ export interface StyleConfig {
 export interface ClockConfig {
     /** 闪烁效果 */
     flashing: boolean;
+    /** 分隔符号过渡动画，呼吸效果 */
+    splitTransition: boolean;
 }
