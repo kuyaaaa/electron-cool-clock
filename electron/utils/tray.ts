@@ -17,6 +17,15 @@ export default () => {
             },
         },
         {
+            label: "复位",
+            click: () => {
+                global.WINDOWS.mainWindow?.setPosition(100, 100, true);
+            },
+        },
+        {
+            type: "separator",
+        },
+        {
             label: "退出",
             click() {
                 app.quit();
