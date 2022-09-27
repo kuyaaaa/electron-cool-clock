@@ -10,4 +10,5 @@ export const defaultStyleConfig: StyleConfig = {
 /** 其他默认设置 */
 export const defaultClockConfig: ClockConfig = {
     flashing: false,
+    splitTransition: false,
 };
