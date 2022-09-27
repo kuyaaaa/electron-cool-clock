@@ -1,13 +1,12 @@
 <template>
     <div ref="clockRef" class="clock-container" :style="{ ...props.customStyle }">
-        <div>
-            {{ time }}
-        </div>
+        <component :is="timeNode"></component>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { h, onBeforeUnmount, onMounted, ref } from "vue";
+import type { VNode } from "vue";
 import dayjs from "dayjs";
 import { StyleConfig } from "@/types/clock";
 
@@ -18,12 +17,18 @@ const props = defineProps<{
 
 const clockRef = ref<HTMLElement | null>(null);
 
-const time = ref("");
+const timeNode = ref<VNode | null>(null);
 const updateTimer = ref<any>(null);
 
 const updateTime = () => {
     const now = new Date();
-    time.value = dayjs(now).format("HH : mm : ss");
+    timeNode.value = h("div", { class: "clock-text-box" }, [
+        h("div", { id: "clock-hour" }, dayjs(now).format("HH")),
+        h("div", { class: "clock-split" }, ":"),
+        h("div", { id: "clock-minute" }, dayjs(now).format("mm")),
+        h("div", { class: "clock-split" }, ":"),
+        h("div", { id: "clock-second" }, dayjs(now).format("ss")),
+    ]);
 };
 
 onMounted(() => {
@@ -44,5 +49,14 @@ onBeforeUnmount(() => {
     line-height: 1;
     white-space: nowrap;
     cursor: move;
+}
+
+:deep(.clock-text-box) {
+    display: flex;
+    align-items: center;
+
+    .clock-split {
+        margin: 0 0.2em;
+    }
 }
 </style>

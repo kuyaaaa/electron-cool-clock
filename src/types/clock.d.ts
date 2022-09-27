@@ -7,3 +7,9 @@ export interface StyleConfig {
     /** 文字大小 */
     fontSize: string;
 }
+
+/** 其他设置参数定义 */
+export interface ClockConfig {
+    /** 闪烁效果 */
+    flashing: boolean;
+}
