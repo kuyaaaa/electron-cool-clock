@@ -17,6 +17,14 @@ export default () => {
             },
         },
         {
+            label: "开机自启",
+            type: "checkbox",
+            checked: app.getLoginItemSettings().openAtLogin,
+            click: () => {
+                app.setLoginItemSettings({ openAtLogin: !app.getLoginItemSettings().openAtLogin });
+            },
+        },
+        {
             label: "复位",
             click: () => {
                 global.WINDOWS.mainWindow?.setPosition(100, 100, true);
