@@ -45,7 +45,7 @@ const style_opacity = computed(() => {
 });
 /** 过渡动画 */
 const style_split_transition = computed(() =>
-    props.clockConfig?.splitTransition ? "all" : "none"
+    props.clockConfig?.splitTransition ? "opacity" : "none"
 );
 
 onMounted(() => {

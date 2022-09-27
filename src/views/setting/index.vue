@@ -24,6 +24,12 @@
                 <n-gi>
                     <n-scrollbar style="height: 578px; margin-bottom: 10px" trigger="none">
                         <n-form label-width="auto" label-placement="left">
+                            <n-divider title-placement="left">
+                                <n-icon>
+                                    <palette-icon />
+                                </n-icon>
+                                <n-text style="margin-left: 5px">样式相关</n-text>
+                            </n-divider>
                             <n-form-item label="颜色">
                                 <n-color-picker
                                     v-model:value="styleConfigForm.color"
@@ -39,6 +45,12 @@
                                     :max="100"
                                 />
                             </n-form-item>
+                            <n-divider title-placement="left">
+                                <n-icon>
+                                    <puzzle-icon />
+                                </n-icon>
+                                <n-text style="margin-left: 5px">其他设置</n-text>
+                            </n-divider>
                             <n-form-item label="闪烁效果">
                                 <n-switch v-model:value="clockConfigForm.flashing" :round="false" />
                             </n-form-item>
@@ -66,7 +78,13 @@
 </template>
 
 <script lang="ts" setup>
-import { Settings as SettingsIcon, X as XIcon, Checkbox as CheckboxIcon } from "@vicons/tabler";
+import {
+    Settings as SettingsIcon,
+    X as XIcon,
+    Checkbox as CheckboxIcon,
+    Palette as PaletteIcon,
+    Puzzle as PuzzleIcon,
+} from "@vicons/tabler";
 import { ref } from "vue";
 import { cloneDeep, isEqual } from "lodash";
 import { useDialog } from "naive-ui";
