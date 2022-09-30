@@ -2,6 +2,7 @@
     <clock
         ref="clockRef"
         :custom-style="clockStyle"
+        :clock-config="clockConfig"
         @mousedown="handleClockMoveStart"
         @mouseup="handleClockMoveEnd"
     />
@@ -11,11 +12,11 @@
 import { storeToRefs } from "pinia";
 import { nextTick, onMounted, ref } from "vue";
 import useSystemStore from "@/store/modules/system";
-import { ipcGetPageSize, ipcWindowMove, ipcWindowMoveFinish } from "@/utils/ipcRenderer";
+import { ipcGetPageSize, ipcWindowMove } from "@/utils/ipcRenderer";
 
 const systemStore = useSystemStore();
 
-const { styleConfig: clockStyle } = storeToRefs(systemStore);
+const { styleConfig: clockStyle, clockConfig } = storeToRefs(systemStore);
 
 const clockRef = ref<any>(null);
 
@@ -34,7 +35,6 @@ const handleClockMoveStart = (e: MouseEvent) => {
 /** 时钟窗口移动结束事件 */
 const handleClockMoveEnd = (e: MouseEvent) => {
     ipcWindowMove(false);
-    ipcWindowMoveFinish();
 };
 
 /** 获取容器的宽高 */

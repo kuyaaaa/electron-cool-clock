@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
+import { getFonts } from "font-list";
 
 /** 前端页面路径名 */
 const FRONT_PATH = "setting";
@@ -30,13 +31,22 @@ const createWindow = () => {
         win.loadURL(url);
     }
 
-    win.once("close", () => {
+    win.once("closed", () => {
         global.WINDOWS.settingWindow = null;
     });
 
     ipcMain.once("close-current-window", () => {
-        win.close();
+        global.WINDOWS.settingWindow?.close();
     });
+
+    /** 系统字体列表 */
+    getFonts({ disableQuoting: true })
+        .then(res => {
+            win.webContents.send("get-font-list", res);
+        })
+        .catch(error => {
+            dialog.showErrorBox("font-list error", JSON.stringify(error));
+        });
 
     global.WINDOWS.settingWindow = win;
 };

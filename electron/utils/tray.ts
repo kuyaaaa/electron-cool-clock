@@ -17,6 +17,23 @@ export default () => {
             },
         },
         {
+            label: "开机自启",
+            type: "checkbox",
+            checked: app.getLoginItemSettings().openAtLogin,
+            click: () => {
+                app.setLoginItemSettings({ openAtLogin: !app.getLoginItemSettings().openAtLogin });
+            },
+        },
+        {
+            label: "复位",
+            click: () => {
+                global.WINDOWS.mainWindow?.setPosition(100, 100, true);
+            },
+        },
+        {
+            type: "separator",
+        },
+        {
             label: "退出",
             click() {
                 app.quit();
@@ -36,7 +53,7 @@ export default () => {
 
         // 双击事件
         appTray.on("double-click", () => {
-            console.log("double-click");
+            global.WINDOWS.mainWindow?.focus();
         });
     });
 };

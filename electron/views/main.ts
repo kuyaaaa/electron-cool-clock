@@ -39,17 +39,17 @@ const createWindow = () => {
     // 窗口移动挂载
     windowMove(win);
 
+    win.on("move", () => {
+        const [x, y] = win.getPosition();
+        store.set("window-position", { x, y });
+    });
+
     ipcMain.on("reload-window", () => {
         win.reload();
     });
 
     ipcMain.on("get-page-size", (event, size) => {
         win.setContentSize(size.width + 4, size.height + 4, true);
-    });
-
-    ipcMain.on("window-move-finish", () => {
-        const [x, y] = win.getPosition();
-        store.set("window-position", { x, y });
     });
 
     win.once("close", () => {

@@ -14,7 +14,7 @@ import useSystemStore from "@/store/modules/system";
 
 const systemStore = useSystemStore();
 
-systemStore.getStyleConfig();
+systemStore.getConfig();
 </script>
 
 <style lang="scss">

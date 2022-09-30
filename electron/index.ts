@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import remote from "@electron/remote/main";
 import createMainWindow from "./views/main";
+import { isFirstLaunch } from "./utils/utils";
 // 全局变量挂载
 import "./utils/global";
 // 系统托盘
@@ -12,9 +13,9 @@ remote.initialize();
 app.disableHardwareAcceleration();
 
 // 开机自启配置
-app.setLoginItemSettings({
-    openAtLogin: true,
-});
+if (isFirstLaunch()) {
+    app.setLoginItemSettings({ openAtLogin: true });
+}
 
 // 多开检测
 const gotTheLock = app.requestSingleInstanceLock();
