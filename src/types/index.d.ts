@@ -1,3 +1,5 @@
-declare global {
-    interface Window {}
-}
+// declare interface Window {
+//     $electron: {
+//         fontList: string[];
+//     };
+// }

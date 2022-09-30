@@ -13,6 +13,7 @@
         "@vicons/tabler": "^0.12.0",
         "dayjs": "^1.11.3",
         "electron-store": "^8.0.2",
+        "font-list": "^1.4.5",
         "lodash": "^4.17.21",
         "naive-ui": "^2.30.6",
         "pinia": "^2.0.14",

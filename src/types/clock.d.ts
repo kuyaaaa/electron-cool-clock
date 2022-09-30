@@ -6,6 +6,8 @@ export interface StyleConfig {
     color: string;
     /** 文字大小 */
     fontSize: string;
+    /** 字体 */
+    fontFamily: string;
 }
 
 /** 其他设置参数定义 */

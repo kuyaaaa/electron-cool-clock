@@ -45,6 +45,15 @@
                                     :max="100"
                                 />
                             </n-form-item>
+                            <n-form-item label="字体">
+                                <n-select
+                                    v-model:value="styleConfigForm.fontFamily"
+                                    filterable
+                                    placeholder="选择字体"
+                                    :options="fontSelectOptions"
+                                    :loading="fontFamilyLoading"
+                                />
+                            </n-form-item>
                             <n-divider title-placement="left">
                                 <n-icon>
                                     <puzzle-icon />
@@ -88,6 +97,8 @@ import {
 import { ref } from "vue";
 import { cloneDeep, isEqual } from "lodash";
 import { useDialog } from "naive-ui";
+import type { SelectOption } from "naive-ui";
+import { ipcRenderer } from "electron";
 import { ipcCloseCurrentWindow, ipcReloadWindow } from "@/utils/ipcRenderer";
 import Clock from "@/components/clock.vue";
 import { StyleConfig, ClockConfig } from "@/types/clock";
@@ -126,6 +137,19 @@ const handleSave = () => {
     ipcCloseCurrentWindow();
     ipcReloadWindow();
 };
+
+const fontFamilyLoading = ref(true);
+const fontSelectOptions = ref<SelectOption[]>([]);
+ipcRenderer.on("get-font-list", (e, list: string[]) => {
+    fontSelectOptions.value = list.map(item => {
+        return {
+            label: item,
+            value: item,
+            style: { fontFamily: item },
+        };
+    });
+    fontFamilyLoading.value = false;
+});
 </script>
 
 <style lang="scss" scoped>

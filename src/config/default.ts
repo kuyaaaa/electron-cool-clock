@@ -5,6 +5,7 @@ import { ClockConfig, StyleConfig } from "@/types/clock";
 export const defaultStyleConfig: StyleConfig = {
     color: "#18a058",
     fontSize: "48px",
+    fontFamily: "inherit",
 };
 
 /** 其他默认设置 */
