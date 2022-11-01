@@ -15,7 +15,7 @@
         "electron-store": "^8.0.2",
         "font-list": "^1.4.5",
         "lodash": "^4.17.21",
-        "naive-ui": "^2.30.6",
+        "naive-ui": "^2.33.5",
         "pinia": "^2.0.14",
         "vue": "^3.2.25"
     },
