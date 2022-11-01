@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
 import EleStore from "electron-store";
 import path from "path";
 import { env as PROCESS_ENV } from "process";
@@ -50,6 +50,10 @@ const createWindow = () => {
 
     ipcMain.on("get-page-size", (event, size) => {
         win.setContentSize(size.width + 4, size.height + 4, true);
+    });
+
+    ipcMain.on("open-browser", (event, url) => {
+        shell.openExternal(url);
     });
 
     win.once("close", () => {

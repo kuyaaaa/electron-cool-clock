@@ -43,6 +43,7 @@
         "unplugin-vue-components": "^0.20.1",
         "vite": "^2.9.9",
         "vite-plugin-electron": "^0.4.9",
+        "vite-plugin-package-version": "^1.0.2",
         "vue-router": "^4.0.16",
         "vue-tsc": "^0.34.7"
     }

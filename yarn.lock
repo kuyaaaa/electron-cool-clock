@@ -3826,6 +3826,11 @@ vite-plugin-optimizer@^1.3.3:
   resolved "https://registry.npmjs.org/vite-plugin-optimizer/-/vite-plugin-optimizer-1.3.3.tgz#c47b5bef3b124c3ed764f8cf7cb07554de40a7d4"
   integrity sha512-CsVJBGULVhdK5lFgY2DBRWdYDQzpxHNAcqQb4GSSPih8YY/UmBOtLy4+rU8kForAhbkzqH5ahnomJbrbzC/MhQ==
 
+vite-plugin-package-version@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/vite-plugin-package-version/-/vite-plugin-package-version-1.0.2.tgz#72b9919f6022eac093fd04533dc0e26dffe22771"
+  integrity sha512-xCJMR0KD4rqSUwINyHJlLizio2VzYzaMrRkqC9xWaVGXgw1lIrzdD+wBUf1XDM8EhL1JoQ7aykLOfKrlZd1SoQ==
+
 vite@^2.9.9:
   version "2.9.12"
   resolved "https://registry.npmjs.org/vite/-/vite-2.9.12.tgz#b1d636b0a8ac636afe9d83e3792d4895509a941b"

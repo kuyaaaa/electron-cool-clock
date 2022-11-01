@@ -20,6 +20,15 @@
                     <div class="ex-container">
                         <clock :custom-style="styleConfigForm" :clock-config="clockConfigForm" />
                     </div>
+                    <div class="about-container">
+                        <n-text depth="3" strong> cool-clock v{{ appVersion }} </n-text>
+                        <n-text depth="3" style="cursor: pointer" @click="toGit">
+                            <n-icon><brand-github-icon /></n-icon>kuyaaaa
+                        </n-text>
+                        <n-text depth="3">
+                            <n-icon><mail-icon /></n-icon>qq1034816916@163.com
+                        </n-text>
+                    </div>
                 </n-gi>
                 <n-gi>
                     <n-scrollbar style="height: 578px; margin-bottom: 10px" trigger="none">
@@ -93,16 +102,20 @@ import {
     Checkbox as CheckboxIcon,
     Palette as PaletteIcon,
     Puzzle as PuzzleIcon,
+    Mail as MailIcon,
+    BrandGithub as BrandGithubIcon,
 } from "@vicons/tabler";
 import { ref } from "vue";
 import { cloneDeep, isEqual } from "lodash";
 import { useDialog } from "naive-ui";
 import type { SelectOption } from "naive-ui";
 import { ipcRenderer } from "electron";
-import { ipcCloseCurrentWindow, ipcReloadWindow } from "@/utils/ipcRenderer";
+import { ipcCloseCurrentWindow, ipcReloadWindow, ipcOpenBrowser } from "@/utils/ipcRenderer";
 import Clock from "@/components/clock.vue";
 import { StyleConfig, ClockConfig } from "@/types/clock";
 import useSystemStore from "@/store/modules/system";
+
+const appVersion = import.meta.env.PACKAGE_VERSION;
 
 const dialog = useDialog();
 
@@ -150,6 +163,10 @@ ipcRenderer.on("get-font-list", (e, list: string[]) => {
     });
     fontFamilyLoading.value = false;
 });
+
+const toGit = () => {
+    ipcOpenBrowser("https://github.com/kuyaaaa/electron-cool-clock");
+};
 </script>
 
 <style lang="scss" scoped>
@@ -190,6 +207,7 @@ $move-bar-height: 40px;
 .content-container {
     padding: 15px 20px;
     height: calc(100% - $move-bar-height);
+    position: relative;
 }
 
 .ex-container {
@@ -210,5 +228,23 @@ $move-bar-height: 40px;
 
 :deep(.n-scrollbar > .n-scrollbar-rail.n-scrollbar-rail--vertical) {
     right: -10px;
+}
+
+.about-container {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    .n-text {
+        margin-top: 10px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+
+        .n-icon {
+            margin-right: 5px;
+        }
+    }
 }
 </style>

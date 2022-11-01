@@ -22,3 +22,8 @@ export const ipcReloadWindow = () => ipcRenderer.send("reload-window");
  */
 export const ipcGetPageSize = (size: { width: number; height: number }) =>
     ipcRenderer.send("get-page-size", size);
+
+/**
+ * 浏览器打开链接
+ */
+export const ipcOpenBrowser = (url: string) => ipcRenderer.send("open-browser", url);
