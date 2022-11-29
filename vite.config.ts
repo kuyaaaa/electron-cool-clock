@@ -6,10 +6,12 @@ import electronRenderer from "vite-plugin-electron/renderer";
 import polyfillExports from "vite-plugin-electron/polyfill-exports";
 import Components from "unplugin-vue-components/vite";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
+import loadVersion from "vite-plugin-package-version";
 
 export default defineConfig({
     plugins: [
         vue(),
+        loadVersion(),
         electron({
             main: {
                 entry: "electron/index.ts",
